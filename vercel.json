@@ -3,7 +3,8 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/api/scrape", "destination": "/api/scrape" }
   ],
   "crons": [
     {
