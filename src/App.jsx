@@ -14,10 +14,7 @@ async function db(path, opt = {}) {
 }
 
 // AI proxy — routes through Cloudflare Worker to fix CORS in all environments
-purescapes-ai.canadiancraftedco.workers.dev
-
-
-
+const AI_PROXY = "https://purescapes-ai.canadiancraftedco-gmailcom.workers.dev";
 
 async function ai(messages, system = "") {
   const endpoints = [AI_PROXY, "https://api.anthropic.com/v1/messages"];
