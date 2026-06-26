@@ -3,1866 +3,1019 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PUREscapes | Hardscaping. Excavating. Landscaping | Meaford</title>
+<title>PUREscapes | Hardscape · Excavate · Landscape | Meaford, Ontario</title>
+<meta name="description" content="Hardscaping, excavation, and landscape design rooted in Meaford. Serving Grey County, Simcoe County and the Blue Mountains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0a0c08;
+  --dark:#111408;
+  --moss:#1d2a14;
+  --sage:#6b8f5a;
+  --sage-light:#8aad78;
+  --mist:#c4d4b4;
+  --cream:#f0ebe2;
+  --stone:#7a7268;
+  --gold:#b89a3e;
+  --white:#fafaf7;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--black);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-  :root {
-    --earth: #1a1f14;
-    --moss: #2d3d22;
-    --fern: #3d5229;
-    --sage: #7a9e6b;
-    --mist: #c8d8bc;
-    --stone: #8a8278;
-    --limestone: #d4cec4;
-    --cream: #f2ede6;
-    --sky: #b8cfd8;
-    --water: #6a9aaa;
-    --gold: #c4a44a;
-    --white: #fafaf8;
-  }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:all 0.4s ease;
+}
+nav.solid{
+  background:rgba(10,12,8,0.96);
+  backdrop-filter:blur(20px);
+  padding:14px 40px;
+  border-bottom:1px solid rgba(107,143,90,0.12);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:300;letter-spacing:0.18em;
+  color:var(--white);text-decoration:none;
+}
+.nav-logo span{color:var(--sage-light);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(240,235,226,0.7);
+  text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--sage-light);}
+.nav-phone{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--black);
+  background:var(--sage-light);padding:10px 22px;
+  text-decoration:none;transition:background 0.2s;
+  white-space:nowrap;
+}
+.nav-phone:hover{background:var(--mist);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{width:22px;height:1.5px;background:var(--mist);display:block;transition:all 0.3s;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── MOBILE MENU ── */
+.mob-menu{
+  display:none;position:fixed;inset:0;z-index:99;
+  background:var(--dark);flex-direction:column;
+  align-items:center;justify-content:center;gap:36px;
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;color:var(--mist);
+  text-decoration:none;letter-spacing:0.04em;
+}
+.mob-close{
+  position:absolute;top:24px;right:28px;
+  background:none;border:none;color:var(--stone);
+  font-size:28px;cursor:pointer;
+}
 
-  html { scroll-behavior: smooth; }
+/* ── HERO ── */
+#hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 40px 80px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop');
+  background-size:cover;background-position:center 60%;
+  transform:scale(1.06);transition:transform 8s ease;
+}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    170deg,
+    rgba(10,12,8,0.15) 0%,
+    rgba(10,12,8,0.3) 40%,
+    rgba(10,12,8,0.85) 80%,
+    rgba(10,12,8,0.97) 100%
+  );
+}
+.hero-content{position:relative;z-index:2;max-width:820px;}
+.hero-tag{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--sage-light);
+  margin-bottom:22px;display:flex;align-items:center;gap:14px;
+  opacity:0;transform:translateY(16px);
+  transition:all 0.8s ease 0.2s;
+}
+.hero-tag.in{opacity:1;transform:translateY(0);}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--sage);}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(54px,9vw,110px);
+  font-weight:300;line-height:0.92;color:var(--white);
+  margin-bottom:28px;
+  opacity:0;transform:translateY(24px);
+  transition:all 0.9s ease 0.4s;
+}
+.hero-h1.in{opacity:1;transform:translateY(0);}
+.hero-h1 em{font-style:italic;color:var(--mist);}
+.hero-sub{
+  font-family:'Inter',sans-serif;font-size:16px;font-weight:300;
+  line-height:1.75;color:rgba(240,235,226,0.75);
+  max-width:460px;margin-bottom:44px;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.9s ease 0.6s;
+}
+.hero-sub.in{opacity:1;transform:translateY(0);}
+.hero-btns{
+  display:flex;gap:16px;flex-wrap:wrap;
+  opacity:0;transform:translateY(16px);
+  transition:all 0.8s ease 0.8s;
+}
+.hero-btns.in{opacity:1;transform:translateY(0);}
+.btn-primary{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--black);
+  background:var(--mist);padding:16px 38px;
+  text-decoration:none;display:inline-block;
+  transition:all 0.2s;
+}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px);}
+.btn-outline{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--mist);
+  background:transparent;padding:16px 38px;
+  text-decoration:none;display:inline-block;
+  border:1px solid rgba(196,212,180,0.35);
+  transition:all 0.2s;
+}
+.btn-outline:hover{border-color:var(--mist);color:var(--white);}
+.scroll-hint{
+  position:absolute;bottom:32px;right:40px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-line{
+  width:1px;height:52px;
+  background:linear-gradient(to bottom,var(--sage),transparent);
+  animation:scrollpulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollpulse{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:1;transform:scaleY(1)}}
 
-  body {
-    background: var(--earth);
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
+/* ── REVEAL ANIMATION ── */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+             transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+.delay-1{transition-delay:0.1s;}
+.delay-2{transition-delay:0.2s;}
+.delay-3{transition-delay:0.3s;}
+.delay-4{transition-delay:0.45s;}
+.delay-5{transition-delay:0.6s;}
 
-  /* ============ NAV ============ */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.4s ease, padding 0.3s ease;
-  }
-  nav.scrolled {
-    background: rgba(26,31,20,0.95);
-    backdrop-filter: blur(12px);
-    padding: 14px 40px;
-    border-bottom: 1px solid rgba(122,158,107,0.15);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--mist);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--sage); }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--limestone);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--sage); }
-  .nav-cta {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--earth);
-    background: var(--sage);
-    padding: 10px 22px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--mist); }
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .hamburger span {
-    width: 24px; height: 1.5px;
-    background: var(--mist);
-    transition: all 0.3s;
-  }
+/* ── SECTION BASE ── */
+.section-tag{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:0.26em;
+  text-transform:uppercase;color:var(--sage-light);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.section-tag::before{content:'';width:28px;height:1px;background:var(--sage);}
+.section-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,6vw,72px);
+  font-weight:300;line-height:1.05;color:var(--white);
+}
+.section-h2 em{font-style:italic;color:var(--mist);}
 
-  /* ============ HERO ============ */
-  #hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 40px 80px;
-    overflow: hidden;
-  }
-  .hero-canvas {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(26,31,20,0.92) 0%,
-      rgba(26,31,20,0.4) 50%,
-      rgba(26,31,20,0.1) 100%
-    );
-    z-index: 1;
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 780px;
-  }
-  .hero-eyebrow {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--sage);
-  }
-  .hero-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 8vw, 96px);
-    font-weight: 300;
-    line-height: 0.95;
-    color: var(--white);
-    margin-bottom: 28px;
-  }
-  .hero-headline em {
-    font-style: italic;
-    color: var(--mist);
-  }
-  .hero-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--limestone);
-    max-width: 480px;
-    margin-bottom: 44px;
-  }
-  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-  .btn-primary {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--earth);
-    background: var(--mist);
-    padding: 16px 36px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
-  .btn-ghost {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--limestone);
-    background: transparent;
-    padding: 16px 0;
-    border: none;
-    border-bottom: 1px solid rgba(200,216,188,0.3);
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .btn-ghost:hover { color: var(--mist); border-color: var(--mist); }
+/* ── SERVICES ── */
+#services{padding:120px 40px;background:var(--dark);}
+.services-intro{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:end;margin-bottom:72px;
+}
+.services-intro-text{}
+.services-intro-sub{
+  font-family:'Inter',sans-serif;font-size:16px;font-weight:300;
+  line-height:1.8;color:var(--stone);max-width:400px;
+}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
+}
+.service-card{
+  position:relative;overflow:hidden;
+  aspect-ratio:3/4;cursor:pointer;
+}
+.service-card img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  filter:brightness(0.55);
+}
+.service-card:hover img{transform:scale(1.06);filter:brightness(0.45);}
+.service-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,12,8,0.92) 0%,rgba(10,12,8,0.1) 60%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px 24px;
+}
+.service-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(107,143,90,0.5);margin-bottom:8px;
+}
+.service-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:400;color:var(--mist);
+  line-height:1.1;margin-bottom:8px;
+}
+.service-desc{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:300;
+  color:var(--stone);line-height:1.6;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease,opacity 0.4s ease;
+  opacity:0;
+}
+.service-card:hover .service-desc{max-height:80px;opacity:1;}
+.service-bar{
+  position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--sage-light);
+  transition:width 0.5s ease;
+}
+.service-card:hover .service-bar{width:100%;}
 
-  /* Scroll indicator */
-  .scroll-indicator {
-    position: absolute;
-    bottom: 32px; right: 40px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  .scroll-line {
-    width: 1px; height: 48px;
-    background: linear-gradient(to bottom, var(--sage), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.1); }
-  }
+/* ── FULL WIDTH IMAGE BREAK ── */
+.image-break{
+  position:relative;height:70vh;min-height:480px;overflow:hidden;
+}
+.image-break img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.04);transition:transform 0.1s linear;
+}
+.image-break-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(10,12,8,0.7) 0%,rgba(10,12,8,0.1) 60%);
+  display:flex;align-items:center;padding:0 80px;
+}
+.image-break-quote{
+  max-width:520px;
+}
+.image-break-quote blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,4vw,48px);font-weight:300;font-style:italic;
+  color:var(--white);line-height:1.25;margin-bottom:20px;
+}
+.image-break-quote cite{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--sage-light);
+  font-style:normal;
+}
 
-  /* ============ SECTION BASE ============ */
-  section { padding: 100px 40px; }
-  .section-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--sage); }
-  .section-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--white);
-  }
-  .section-headline em { font-style: italic; color: var(--mist); }
+/* ── WORK / GALLERY ── */
+#work{padding:120px 40px;background:var(--black);}
+.work-intro{margin-bottom:60px;}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:auto;
+  gap:4px;
+}
+.gallery-item{overflow:hidden;position:relative;}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.7s cubic-bezier(0.16,1,0.3,1),filter 0.4s ease;
+  filter:brightness(0.85) saturate(0.9);
+}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(1) saturate(1.1);}
+.gi-1{grid-column:span 7;aspect-ratio:16/10;}
+.gi-2{grid-column:span 5;aspect-ratio:4/3;}
+.gi-3{grid-column:span 4;aspect-ratio:4/3;}
+.gi-4{grid-column:span 4;aspect-ratio:4/3;}
+.gi-5{grid-column:span 4;aspect-ratio:4/3;}
 
-  /* ============ SERVICES ============ */
-  #services {
-    background: var(--earth);
-    position: relative;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 60px;
-  }
-  .service-card {
-    background: var(--moss);
-    padding: 48px 36px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 2px;
-    background: var(--sage);
-    transition: width 0.4s ease;
-  }
-  .service-card:hover { background: var(--fern); }
-  .service-card:hover::before { width: 100%; }
-  .service-icon {
-    font-size: 32px;
-    margin-bottom: 24px;
-    display: block;
-  }
-  .service-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: var(--mist);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-  .service-desc {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--stone);
-    line-height: 1.7;
-  }
-  .service-number {
-    position: absolute;
-    top: 24px; right: 28px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    color: rgba(122,158,107,0.3);
-    letter-spacing: 0.1em;
-  }
+/* ── ABOUT ── */
+#about{padding:120px 40px;background:var(--moss);}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.about-image-stack{position:relative;height:620px;}
+.about-img-main{
+  position:absolute;top:0;left:0;right:60px;bottom:80px;
+  overflow:hidden;
+}
+.about-img-main img{width:100%;height:100%;object-fit:cover;}
+.about-img-accent{
+  position:absolute;bottom:0;right:0;
+  width:55%;height:48%;overflow:hidden;
+  border:4px solid var(--moss);
+}
+.about-img-accent img{width:100%;height:100%;object-fit:cover;}
+.about-stat-badge{
+  position:absolute;top:40px;right:20px;
+  background:var(--sage);
+  padding:24px 20px;text-align:center;
+  width:120px;
+}
+.about-stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;font-weight:300;color:var(--white);line-height:1;
+}
+.about-stat-l{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:8px;font-weight:600;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(255,255,255,0.7);
+  margin-top:4px;
+}
+.about-body{
+  font-family:'Inter',sans-serif;font-size:16px;font-weight:300;
+  line-height:1.85;color:rgba(196,212,180,0.8);
+  margin:24px 0 36px;
+}
+.team-row{display:flex;gap:16px;margin-top:44px;padding-top:36px;border-top:1px solid rgba(107,143,90,0.2);}
+.team-member{flex:1;}
+.team-img{
+  width:72px;height:72px;overflow:hidden;
+  border-radius:50%;margin-bottom:12px;
+  border:2px solid rgba(107,143,90,0.4);
+}
+.team-img img{width:100%;height:100%;object-fit:cover;}
+.team-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;color:var(--mist);margin-bottom:2px;
+}
+.team-role{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--sage-light);margin-bottom:8px;
+}
+.team-bio{
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:300;
+  line-height:1.65;color:var(--stone);
+}
 
-  /* ============ ABOUT / STORY ============ */
-  #about {
-    background: #141810;
-    overflow: hidden;
-  }
-  .about-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .about-visual {
-    position: relative;
-    height: 520px;
-  }
-  .about-canvas { width: 100%; height: 100%; }
-  .about-text { }
-  .about-body {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--limestone);
-    line-height: 1.8;
-    margin-top: 28px;
-    margin-bottom: 40px;
-  }
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(122,158,107,0.2);
-  }
-  .stat-item {}
-  .stat-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--mist);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-top: 6px;
-  }
+/* ── PROCESS ── */
+#process{padding:120px 40px;background:var(--dark);}
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:60px;
+}
+.process-step{
+  padding:48px 32px;
+  border-top:2px solid rgba(107,143,90,0.15);
+  position:relative;transition:border-color 0.3s;
+}
+.process-step:hover{border-top-color:var(--sage);}
+.process-step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;font-weight:300;
+  color:rgba(107,143,90,0.1);
+  line-height:1;margin-bottom:20px;
+  transition:color 0.3s;
+}
+.process-step:hover .process-step-num{color:rgba(107,143,90,0.2);}
+.process-step-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:400;color:var(--mist);margin-bottom:12px;
+}
+.process-step-body{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:300;
+  line-height:1.7;color:var(--stone);
+}
 
-  /* ============ TESTIMONIALS ============ */
-  #testimonials {
-    background: var(--moss);
-    text-align: center;
-  }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 60px;
-    text-align: left;
-  }
-  .testimonial-card {
-    background: var(--fern);
-    padding: 40px 36px;
-  }
-  .testimonial-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--mist);
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-  .testimonial-quote::before {
-    content: '"';
-    font-size: 48px;
-    color: rgba(122,158,107,0.4);
-    line-height: 0;
-    display: block;
-    margin-bottom: 16px;
-    margin-top: 8px;
-  }
-  .testimonial-author {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage);
-  }
+/* ── TESTIMONIALS ── */
+#testimonials{padding:120px 40px;background:var(--black);}
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:3px;margin-top:60px;
+}
+.testimonial-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(107,143,90,0.12);
+  padding:44px 36px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.testimonial-card:hover{
+  border-color:rgba(107,143,90,0.3);
+  background:rgba(107,143,90,0.04);
+}
+.stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:20px;}
+.testimonial-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:300;font-style:italic;
+  color:var(--mist);line-height:1.65;margin-bottom:28px;
+}
+.testimonial-quote::before{
+  content:'\201C';
+  font-size:56px;color:rgba(107,143,90,0.25);
+  line-height:0;display:block;margin-bottom:18px;margin-top:10px;
+}
+.testimonial-author{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--sage-light);
+}
 
-  /* ============ CONTACT ============ */
-  #contact {
-    background: var(--earth);
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-inner {
-    max-width: 600px;
-  }
-  .contact-body {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--limestone);
-    line-height: 1.8;
-    margin-top: 24px;
-    margin-bottom: 48px;
-  }
-  .contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 40px;
-  }
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--limestone);
-  }
-  .contact-detail-icon {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(122,158,107,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .contact-detail a { color: inherit; text-decoration: none; }
-  .contact-detail a:hover { color: var(--sage); }
+/* ── CONTACT ── */
+#contact{padding:120px 40px;background:var(--moss);}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;
+}
+.contact-body{
+  font-family:'Inter',sans-serif;font-size:16px;font-weight:300;
+  line-height:1.8;color:rgba(196,212,180,0.75);
+  margin:24px 0 48px;
+}
+.contact-details{display:flex;flex-direction:column;gap:18px;margin-top:36px;}
+.contact-row{
+  display:flex;align-items:center;gap:16px;
+  font-family:'Inter',sans-serif;font-size:14px;color:var(--mist);
+}
+.contact-icon{
+  width:40px;height:40px;
+  border:1px solid rgba(107,143,90,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.contact-row a{color:inherit;text-decoration:none;transition:color 0.2s;}
+.contact-row a:hover{color:var(--sage-light);}
+.form-label{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--stone);
+  display:block;margin-bottom:7px;
+}
+.form-input{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(107,143,90,0.2);
+  color:var(--cream);padding:13px 16px;
+  font-family:'Inter',sans-serif;font-size:14px;
+  outline:none;transition:border-color 0.2s;
+  margin-bottom:16px;
+}
+.form-input:focus{border-color:var(--sage);}
+.form-input::placeholder{color:var(--stone);}
+textarea.form-input{resize:vertical;min-height:120px;}
+.btn-submit{
+  width:100%;background:var(--sage-light);color:var(--black);
+  border:none;padding:16px;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;transition:background 0.2s;
+}
+.btn-submit:hover{background:var(--mist);}
 
-  /* Contact form */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
-  .form-group { margin-bottom: 20px; }
-  .form-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    display: block;
-    margin-bottom: 8px;
-  }
-  .form-input {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(122,158,107,0.2);
-    color: var(--cream);
-    padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus { border-color: var(--sage); }
-  .form-input::placeholder { color: var(--stone); }
-  textarea.form-input { resize: vertical; min-height: 120px; }
+/* ── FOOTER ── */
+footer{
+  background:var(--black);padding:56px 40px 32px;
+  border-top:1px solid rgba(107,143,90,0.1);
+}
+.footer-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;padding-bottom:40px;
+  border-bottom:1px solid rgba(107,143,90,0.08);
+  flex-wrap:wrap;gap:32px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:300;letter-spacing:0.14em;color:var(--mist);
+}
+.footer-logo span{color:var(--sage-light);}
+.footer-tagline{
+  font-family:'Inter',sans-serif;font-size:12px;
+  color:var(--stone);margin-top:4px;
+}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+.footer-links a{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--stone);
+  text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--sage-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{
+  width:36px;height:36px;
+  border:1px solid rgba(107,143,90,0.18);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--stone);text-decoration:none;font-size:13px;
+  transition:all 0.2s;font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:600;
+}
+.footer-social a:hover{border-color:var(--sage-light);color:var(--sage-light);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{
+  font-family:'Inter',sans-serif;font-size:11px;color:var(--stone);
+}
+.footer-admin{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(107,143,90,0.3);cursor:pointer;
+  text-decoration:none;transition:color 0.2s;
+}
+.footer-admin:hover{color:var(--sage);}
 
-  /* ============ FOOTER ============ */
-  footer {
-    background: #0e1109;
-    padding: 48px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(122,158,107,0.12);
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--mist);
-  }
-  .footer-logo span { color: var(--sage); }
-  .footer-copy {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: var(--stone);
-  }
-  .footer-social { display: flex; gap: 16px; }
-  .footer-social a {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(122,158,107,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--stone);
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.2s;
-  }
-  .footer-social a:hover { border-color: var(--sage); color: var(--sage); }
+/* ── SUPPLY YARD STRIP ── */
+.supply-strip{
+  background:var(--sage);padding:20px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.supply-strip-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:300;color:var(--black);
+}
+.supply-strip-sub{
+  font-family:'Inter',sans-serif;font-size:12px;
+  font-weight:300;color:rgba(10,12,8,0.7);margin-top:2px;
+}
+.supply-strip-btn{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--sage);
+  background:var(--black);padding:12px 24px;
+  text-decoration:none;transition:background 0.2s;white-space:nowrap;
+}
+.supply-strip-btn:hover{background:var(--dark);}
 
-  /* ============ ADMIN PANEL ============ */
-  #admin-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: #0c0f08;
-    overflow-y: auto;
-  }
-  #admin-login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 40px;
-  }
-  .login-box {
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.2);
-    padding: 56px 48px;
-    width: 100%;
-    max-width: 420px;
-  }
-  .login-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--mist);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .login-logo span { color: var(--sage); }
-  .login-sub {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 40px;
-  }
-  .login-error {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: #e07070;
-    margin-bottom: 16px;
-    display: none;
-  }
-  .btn-login {
-    width: 100%;
-    background: var(--sage);
-    color: var(--earth);
-    border: none;
-    padding: 16px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background 0.2s;
-  }
-  .btn-login:hover { background: var(--mist); }
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:16px 20px;}
+  nav.solid{padding:12px 20px;}
+  .nav-links,.nav-phone{display:none;}
+  .hamburger{display:flex;}
+  #hero{padding:0 20px 60px;}
+  .hero-h1{font-size:clamp(44px,12vw,72px);}
+  .hero-sub{font-size:15px;}
+  #services{padding:80px 20px;}
+  .services-intro{grid-template-columns:1fr;gap:24px;margin-bottom:40px;}
+  .services-grid{grid-template-columns:1fr;}
+  .service-card{aspect-ratio:16/9;}
+  .service-desc{max-height:60px!important;opacity:1!important;}
+  .image-break-overlay{padding:0 24px;}
+  .image-break-quote blockquote{font-size:clamp(22px,5vw,32px);}
+  #work{padding:80px 20px;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gi-1,.gi-2,.gi-3,.gi-4,.gi-5{grid-column:span 1;aspect-ratio:4/3;}
+  #about{padding:80px 20px;}
+  .about-grid{grid-template-columns:1fr;gap:48px;}
+  .about-image-stack{height:380px;}
+  .about-img-accent{width:45%;}
+  #process{padding:80px 20px;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:0;}
+  #testimonials{padding:80px 20px;}
+  .testimonials-grid{grid-template-columns:1fr;gap:2px;}
+  #contact{padding:80px 20px;}
+  .contact-grid{grid-template-columns:1fr;gap:48px;}
+  .footer-top{flex-direction:column;}
+  .supply-strip{flex-direction:column;text-align:center;}
+  .scroll-hint{display:none;}
+}
 
-  /* Admin Dashboard */
-  #admin-dashboard {
-    display: none;
-    min-height: 100vh;
-  }
-  .admin-sidebar {
-    position: fixed;
-    left: 0; top: 0; bottom: 0;
-    width: 240px;
-    background: #0e1109;
-    border-right: 1px solid rgba(122,158,107,0.12);
-    padding: 32px 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-  }
-  .sidebar-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--mist);
-    padding: 0 28px 28px;
-    border-bottom: 1px solid rgba(122,158,107,0.1);
-    margin-bottom: 20px;
-  }
-  .sidebar-logo span { color: var(--sage); }
-  .sidebar-badge {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-top: 4px;
-  }
-  .sidebar-nav { flex: 1; }
-  .sidebar-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px 28px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--stone);
-    cursor: pointer;
-    transition: all 0.2s;
-    border-left: 2px solid transparent;
-    user-select: none;
-  }
-  .sidebar-item:hover { color: var(--mist); background: rgba(122,158,107,0.05); }
-  .sidebar-item.active { color: var(--sage); border-left-color: var(--sage); background: rgba(122,158,107,0.06); }
-  .sidebar-item .icon { font-size: 15px; width: 18px; text-align: center; }
-  .sidebar-footer { padding: 20px 28px; border-top: 1px solid rgba(122,158,107,0.1); }
-  .sidebar-user {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: var(--stone);
-    margin-bottom: 12px;
-  }
-  .btn-logout {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--stone);
-    background: none;
-    border: 1px solid rgba(122,158,107,0.15);
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    width: 100%;
-  }
-  .btn-logout:hover { color: var(--cream); border-color: var(--sage); }
-
-  .admin-main {
-    margin-left: 240px;
-    padding: 40px 48px;
-    min-height: 100vh;
-  }
-  .admin-panel { display: none; }
-  .admin-panel.active { display: block; }
-  .panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .panel-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    color: var(--white);
-  }
-  .panel-subtitle {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--stone);
-    margin-top: 4px;
-  }
-
-  /* Dashboard cards */
-  .dash-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-  .dash-card {
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.12);
-    padding: 24px;
-  }
-  .dash-card-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 12px;
-  }
-  .dash-card-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
-    font-weight: 300;
-    color: var(--mist);
-    line-height: 1;
-  }
-  .dash-card-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    color: var(--sage);
-    margin-top: 6px;
-  }
-
-  /* Tenders feed */
-  .tender-filters {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .filter-chip {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    border: 1px solid rgba(122,158,107,0.2);
-    color: var(--stone);
-    background: none;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .filter-chip:hover, .filter-chip.active { 
-    border-color: var(--sage); 
-    color: var(--sage);
-    background: rgba(122,158,107,0.06);
-  }
-  .tender-card {
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.1);
-    padding: 24px 28px;
-    margin-bottom: 12px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: start;
-    transition: border-color 0.2s;
-    cursor: pointer;
-  }
-  .tender-card:hover { border-color: rgba(122,158,107,0.35); }
-  .tender-card.high-fit { border-left: 3px solid var(--sage); }
-  .tender-card.medium-fit { border-left: 3px solid var(--gold); }
-  .tender-card.low-fit { border-left: 3px solid rgba(138,130,120,0.4); }
-  .tender-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--mist);
-    margin-bottom: 6px;
-  }
-  .tender-meta {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-  .tender-meta-item {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--stone);
-  }
-  .tender-meta-item strong { color: var(--limestone); }
-  .tender-desc {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--stone);
-    line-height: 1.6;
-  }
-  .tender-right { text-align: right; }
-  .fit-score {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  .fit-score-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    line-height: 1;
-  }
-  .fit-score-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 8px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-top: 2px;
-  }
-  .score-high { color: var(--sage); }
-  .score-med { color: var(--gold); }
-  .score-low { color: var(--stone); }
-  .tender-actions { display: flex; flex-direction: column; gap: 8px; }
-  .btn-sm {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 9px 16px;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
-  }
-  .btn-sm-primary { background: var(--sage); color: var(--earth); }
-  .btn-sm-primary:hover { background: var(--mist); }
-  .btn-sm-ghost { background: none; color: var(--stone); border: 1px solid rgba(122,158,107,0.2); }
-  .btn-sm-ghost:hover { color: var(--sage); border-color: var(--sage); }
-  .tender-deadline {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-top: 8px;
-  }
-  .tender-deadline.urgent { color: #e07070; }
-
-  /* AI Chat / Proposal */
-  .ai-chat-area {
-    background: #0e1109;
-    border: 1px solid rgba(122,158,107,0.15);
-    border-radius: 0;
-    height: 380px;
-    overflow-y: auto;
-    padding: 24px;
-    margin-bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .chat-msg {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .chat-avatar {
-    width: 28px; height: 28px;
-    border: 1px solid rgba(122,158,107,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    flex-shrink: 0;
-    color: var(--sage);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-  }
-  .chat-bubble {
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.1);
-    padding: 14px 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--limestone);
-    line-height: 1.6;
-    max-width: 580px;
-  }
-  .chat-bubble.user {
-    background: rgba(122,158,107,0.08);
-    border-color: rgba(122,158,107,0.2);
-  }
-  .chat-typing {
-    display: flex;
-    gap: 4px;
-    padding: 12px 18px;
-    align-items: center;
-  }
-  .dot {
-    width: 6px; height: 6px;
-    background: var(--sage);
-    border-radius: 50%;
-    animation: typingDot 1.2s ease-in-out infinite;
-  }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typingDot { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
-  .chat-input-row { display: flex; gap: 10px; }
-  .chat-input {
-    flex: 1;
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.2);
-    color: var(--cream);
-    padding: 12px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    outline: none;
-  }
-  .chat-input:focus { border-color: var(--sage); }
-  .chat-input::placeholder { color: var(--stone); }
-
-  /* Past winners table */
-  .data-table { width: 100%; border-collapse: collapse; }
-  .data-table th {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid rgba(122,158,107,0.15);
-  }
-  .data-table td {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--limestone);
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(122,158,107,0.06);
-  }
-  .data-table tr:hover td { background: rgba(122,158,107,0.03); }
-  .winner-badge {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    padding: 4px 10px;
-    text-transform: uppercase;
-  }
-  .winner-badge.won { background: rgba(122,158,107,0.15); color: var(--sage); }
-  .winner-badge.lost { background: rgba(138,130,120,0.1); color: var(--stone); }
-
-  /* Search bar */
-  .search-bar {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-  }
-  .search-input {
-    flex: 1;
-    min-width: 240px;
-    background: #141810;
-    border: 1px solid rgba(122,158,107,0.2);
-    color: var(--cream);
-    padding: 12px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    outline: none;
-  }
-  .search-input:focus { border-color: var(--sage); }
-  .search-input::placeholder { color: var(--stone); }
-  .btn-search {
-    background: var(--sage);
-    color: var(--earth);
-    border: none;
-    padding: 12px 28px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .btn-search:hover { background: var(--mist); }
-
-  /* Proposal output */
-  .proposal-output {
-    background: #0e1109;
-    border: 1px solid rgba(122,158,107,0.15);
-    padding: 32px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--limestone);
-    line-height: 1.8;
-    white-space: pre-wrap;
-    min-height: 200px;
-    display: none;
-  }
-  .proposal-output.visible { display: block; }
-  .proposal-output h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--mist);
-    margin-bottom: 8px;
-    margin-top: 20px;
-  }
-  .proposal-output h3:first-child { margin-top: 0; }
-  .proposal-output p { margin-bottom: 12px; }
-
-  /* Status bar */
-  .status-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 24px;
-  }
-  .status-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--sage);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    section { padding: 72px 24px; }
-    #hero { padding: 0 24px 60px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 40px; }
-    .about-visual { height: 280px; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: repeat(3, 1fr); }
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    footer { flex-direction: column; text-align: center; }
-
-    /* Admin mobile */
-    .admin-sidebar { display: none; }
-    .admin-main { margin-left: 0; padding: 24px; }
-    .dash-cards { grid-template-columns: repeat(2, 1fr); }
-    .tender-card { grid-template-columns: 1fr; }
-    .tender-right { text-align: left; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-headline { font-size: 42px; }
-    .dash-cards { grid-template-columns: 1fr 1fr; }
-    .login-box { padding: 36px 28px; }
-  }
-
-  /* Loading animation */
-  .loading-shimmer {
-    background: linear-gradient(90deg, #141810 25%, #1d2416 50%, #141810 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-  }
-  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--earth);
-    z-index: 99;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--mist);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-  }
-  .mobile-close {
-    position: absolute;
-    top: 24px; right: 24px;
-    font-size: 24px;
-    color: var(--stone);
-    cursor: pointer;
-    background: none; border: none;
-  }
+@media(max-width:480px){
+  .process-grid{grid-template-columns:1fr;}
+  .team-row{flex-direction:column;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-outline{text-align:center;}
+}
 </style>
 </head>
 <body>
 
-<!-- ======== MOBILE MENU ======== -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
-  <a href="#services" onclick="closeMobileMenu()">Services</a>
-  <a href="#about" onclick="closeMobileMenu()">About</a>
-  <a href="#testimonials" onclick="closeMobileMenu()">Work</a>
-  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-  <a href="#" onclick="closeMobileMenu(); window.location='/admin';" style="color: var(--sage); font-size: 18px; margin-top: 20px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;">Admin</a>
-</div>
-
-<!-- ======== NAV ======== -->
-<nav id="navbar">
+<!-- NAV -->
+<nav id="nav">
   <a href="#" class="nav-logo">PURE<span>scapes</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#work">Our Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#testimonials">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="tel:2262450573" class="nav-cta">226.245.0573</a>
-  <div class="hamburger" onclick="openMobileMenu()">
+  <a href="tel:2262450573" class="nav-phone">226.245.0573</a>
+  <button class="hamburger" onclick="openMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<!-- ======== HERO ======== -->
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMenu()">✕</button>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#work" onclick="closeMenu()">Our Work</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="tel:2262450573" onclick="closeMenu()" style="font-size:22px;font-family:'Space Grotesk',sans-serif;font-size:16px;letter-spacing:0.1em;color:var(--sage-light);">226.245.0573</a>
+</div>
+
+<!-- HERO -->
 <section id="hero">
-  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Meaford · Georgian Bay · Grey County</div>
-    <h1 class="hero-headline">
-      Where the land<br>
-      <em>breathes again.</em>
+    <div class="hero-tag" id="heroTag">Meaford · Georgian Bay · Grey County</div>
+    <h1 class="hero-h1" id="heroH1">
+      We shape the<br><em>land you love.</em>
     </h1>
-    <p class="hero-sub">
-      Hardscaping, excavation, and landscape design for people who care about the land they live on. Rooted in Meaford. Built for the Bay.
+    <p class="hero-sub" id="heroSub">
+      Hardscaping, excavation, and landscape design built for the terrain and seasons of Georgian Bay. Founded by tradespeople who grew up on this land.
     </p>
-    <div class="hero-actions">
+    <div class="hero-btns" id="heroBtns">
       <a href="#contact" class="btn-primary">Start a Project</a>
-      <a href="#services" class="btn-ghost">Explore Our Work</a>
+      <a href="#work" class="btn-outline">See Our Work</a>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div></div>
 </section>
 
-<!-- ======== SERVICES ======== -->
+<!-- SERVICES -->
 <section id="services">
-  <div class="section-label">What We Do</div>
-  <h2 class="section-headline">Shaping the <em>land</em><br>with intention.</h2>
+  <div class="services-intro">
+    <div>
+      <div class="section-tag reveal">What We Do</div>
+      <h2 class="section-h2 reveal delay-1">Built for every<br><em>corner of the land.</em></h2>
+    </div>
+    <p class="services-intro-sub reveal delay-2">
+      From the first excavator pass to the last stone set, we self-perform everything. No subcontractors, no handoffs — one crew with six decades of combined experience.
+    </p>
+  </div>
   <div class="services-grid">
-    <div class="service-card">
-      <span class="service-number">01</span>
-      <span class="service-icon">⛏</span>
-      <div class="service-name">Excavation</div>
-      <p class="service-desc">Site preparation, grading, drainage systems, trenching, and earth moving for residential and commercial projects across the region.</p>
+    <div class="service-card reveal">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80&auto=format&fit=crop" alt="Landscaping" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">01</div>
+        <div class="service-name">Landscaping</div>
+        <div class="service-desc">Garden design, native planting, lawn care, and full property transformations from residential to municipal scale.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
-    <div class="service-card">
-      <span class="service-number">02</span>
-      <span class="service-icon">🪨</span>
-      <div class="service-name">Hardscaping</div>
-      <p class="service-desc">Natural stone, interlock, retaining walls, patios, pathways, and structural landscape elements built to endure Georgian Bay seasons.</p>
+    <div class="service-card reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=800&q=80&auto=format&fit=crop" alt="Hardscaping" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">02</div>
+        <div class="service-name">Hardscaping</div>
+        <div class="service-desc">Natural stone, interlock, armour stone, retaining walls, patios, driveways — built to outlast Georgian Bay winters.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
-    <div class="service-card">
-      <span class="service-number">03</span>
-      <span class="service-icon">🌿</span>
-      <div class="service-name">Landscaping</div>
-      <p class="service-desc">Garden design, planting, lawn care, maintenance, and full landscape transformations — residential to municipal scale.</p>
+    <div class="service-card reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&auto=format&fit=crop" alt="Excavation" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">03</div>
+        <div class="service-name">Excavation</div>
+        <div class="service-desc">Site prep, grading, drainage, ditching, culvert work, and earth moving for residential and commercial sites.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
-    <div class="service-card">
-      <span class="service-number">04</span>
-      <span class="service-icon">🏡</span>
-      <div class="service-name">PUREhome</div>
-      <p class="service-desc">Complete residential landscape packages — design through build. One team, one vision, from the first stake to the final stone.</p>
+    <div class="service-card reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80&auto=format&fit=crop" alt="Pool & Outdoor Living" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">04</div>
+        <div class="service-name">Pool & Outdoor Living</div>
+        <div class="service-desc">Pool excavation, outdoor kitchens, pergolas, fire pits, and complete outdoor room builds.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
-    <div class="service-card">
-      <span class="service-number">05</span>
-      <span class="service-icon">🌱</span>
-      <div class="service-name">Garden Maintenance</div>
-      <p class="service-desc">Seasonal care, pruning, mulching, and ongoing property maintenance programs that keep your landscape thriving year-round.</p>
+    <div class="service-card reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Supply Yard" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">05</div>
+        <div class="service-name">Supply Yard</div>
+        <div class="service-desc">Aggregates, topsoil, mulch, stone, and landscape materials. Open to trade and public at 71 Edwin St E, Meaford.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
-    <div class="service-card">
-      <span class="service-number">06</span>
-      <span class="service-icon">🪵</span>
-      <div class="service-name">Supply Yard</div>
-      <p class="service-desc">Premium landscape materials — natural stone, gravel, soil, mulch, and aggregates — available to trade and public. Unit B, 71 Edwin St E, Meaford.</p>
+    <div class="service-card reveal delay-3">
+      <img src="https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=800&q=80&auto=format&fit=crop" alt="Maintenance" loading="lazy">
+      <div class="service-card-overlay">
+        <div class="service-num">06</div>
+        <div class="service-name">Seasonal Maintenance</div>
+        <div class="service-desc">Year-round property care — spring cleanup through snow management — for residential and commercial clients.</div>
+      </div>
+      <div class="service-bar"></div>
     </div>
   </div>
 </section>
 
-<!-- ======== ABOUT ======== -->
-<section id="about">
-  <div class="about-inner">
-    <div class="about-visual">
-      <canvas class="about-canvas" id="aboutCanvas"></canvas>
+<!-- FULL WIDTH IMAGE BREAK 1 -->
+<div class="image-break" id="break1">
+  <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800&q=85&auto=format&fit=crop" alt="Georgian Bay landscape" id="parallax1" loading="lazy">
+  <div class="image-break-overlay">
+    <div class="image-break-quote reveal-left">
+      <blockquote>"At Purescapes, your landscape dreams are our business."</blockquote>
+      <cite>Founded 2021 · Meaford, Ontario</cite>
     </div>
-    <div class="about-text">
-      <div class="section-label">Our Story</div>
-      <h2 class="section-headline">Built from<br><em>this ground.</em></h2>
+  </div>
+</div>
+
+<!-- WORK / GALLERY -->
+<section id="work">
+  <div class="work-intro">
+    <div class="section-tag reveal">Our Work</div>
+    <h2 class="section-h2 reveal delay-1">Projects across<br><em>Grey & Simcoe.</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gi-1 reveal">
+      <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200&q=80&auto=format&fit=crop" alt="Armour stone retaining wall" loading="lazy">
+    </div>
+    <div class="gallery-item gi-2 reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80&auto=format&fit=crop" alt="Interlock patio" loading="lazy">
+    </div>
+    <div class="gallery-item gi-3 reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80&auto=format&fit=crop" alt="Garden design" loading="lazy">
+    </div>
+    <div class="gallery-item gi-4 reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80&auto=format&fit=crop" alt="Pool landscaping" loading="lazy">
+    </div>
+    <div class="gallery-item gi-5 reveal delay-3">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&auto=format&fit=crop" alt="Excavation site" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-stack reveal-left">
+      <div class="about-img-main">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80&auto=format&fit=crop" alt="PUREscapes crew" loading="lazy">
+      </div>
+      <div class="about-img-accent">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Landscape work" loading="lazy">
+      </div>
+      <div class="about-stat-badge">
+        <div class="about-stat-n">60+</div>
+        <div class="about-stat-l">Years Combined</div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-tag">About Us</div>
+      <h2 class="section-h2">Built by people<br><em>from here.</em></h2>
       <p class="about-body">
-        PUREscapes was built for the land we know — the limestone ridges, cedar forests, and bay-swept fields of Grey County. Our team brings craft and care to every project, whether it's a garden wall in Thornbury or a municipal site in Owen Sound.<br><br>
-        We work alongside homeowners, contractors, and municipalities across Grey and Simcoe counties with the same commitment: do it right, do it to last.
+        PUREscapes was born in 2021 from a partnership between two industry veterans who spent their careers building some of the finest landscapes and outdoor spaces in Grey and Simcoe Counties.<br><br>
+        We work on everything from backyard transformations to municipal infrastructure — with the same crew, the same standards, and the same commitment to getting it right.
       </p>
-      <a href="#contact" class="btn-primary">Talk to Our Team</a>
-      <div class="stats-row">
-        <div class="stat-item">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">Years in the Region</div>
+      <a href="#contact" class="btn-primary">Work With Us</a>
+      <div class="team-row">
+        <div class="team-member">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop&facepad=3&faces=1" alt="Patrick" loading="lazy">
+          </div>
+          <div class="team-name">Patrick</div>
+          <div class="team-role">VP Operations</div>
+          <div class="team-bio">19 years in heavy machinery. Georgian College trained. Former crew lead at Zwarts — if it needs to be driven, Pat drives it.</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">Grey &amp;<br>Simcoe</div>
-          <div class="stat-label" style="font-size:9px;">Counties Served</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Local Crew</div>
+        <div class="team-member">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop&facepad=3&faces=1" alt="Dwayne" loading="lazy">
+          </div>
+          <div class="team-name">Dwayne</div>
+          <div class="team-role">Co-Founder</div>
+          <div class="team-bio">Four decades shaping landscapes across Grey County. His work has been featured in homes, courses, and publications throughout the region.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======== TESTIMONIALS ======== -->
-<section id="testimonials">
-  <div class="section-label">From Our Clients</div>
-  <h2 class="section-headline">What the land <em>says</em><br>after we leave.</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-quote">Excellent service — end result lovely and the team were great to have around.</div>
-      <div class="testimonial-author">Bev Ingoldsby</div>
+<!-- FULL WIDTH IMAGE BREAK 2 -->
+<div class="image-break">
+  <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1800&q=85&auto=format&fit=crop" alt="Georgian Bay trail" loading="lazy">
+  <div class="image-break-overlay" style="background:linear-gradient(to left,rgba(10,12,8,0.7) 0%,rgba(10,12,8,0.1) 60%);justify-content:flex-end;">
+    <div class="image-break-quote reveal-right" style="text-align:right;">
+      <blockquote>"We enjoy living and working in an area that promotes adventure."</blockquote>
+      <cite>Meaford · Close to the Blue Mountains & Collingwood</cite>
     </div>
-    <div class="testimonial-card">
-      <div class="testimonial-quote">Tidy, hard working, and job done perfectly.</div>
-      <div class="testimonial-author">Dave Stamper</div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag reveal">How It Works</div>
+  <h2 class="section-h2 reveal delay-1">Simple process.<br><em>Exceptional results.</em></h2>
+  <div class="process-grid">
+    <div class="process-step reveal delay-1">
+      <div class="process-step-num">1</div>
+      <div class="process-step-title">Site Visit</div>
+      <div class="process-step-body">We come to you. Walk the property, understand your vision, assess the terrain and access conditions.</div>
     </div>
-    <div class="testimonial-card">
-      <div class="testimonial-quote">Ben is easy to work with and communicates well with both the homeowner and contractor.</div>
-      <div class="testimonial-author">Jason Nichol</div>
+    <div class="process-step reveal delay-2">
+      <div class="process-step-num">2</div>
+      <div class="process-step-title">Proposal</div>
+      <div class="process-step-body">Detailed scope, timeline, and fixed price — no surprises. We explain every line item before a single mark is made.</div>
+    </div>
+    <div class="process-step reveal delay-3">
+      <div class="process-step-num">3</div>
+      <div class="process-step-title">Build</div>
+      <div class="process-step-body">Our own crew, our own equipment. We don't subcontract. You get the same people from day one to completion.</div>
+    </div>
+    <div class="process-step reveal delay-4">
+      <div class="process-step-num">4</div>
+      <div class="process-step-title">Handover</div>
+      <div class="process-step-body">We walk every project with you on completion. Questions six months later? Call us. We stand behind our work.</div>
     </div>
   </div>
 </section>
 
-<!-- ======== CONTACT ======== -->
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag reveal">What Clients Say</div>
+  <h2 class="section-h2 reveal delay-1">The land speaks<br><em>for itself.</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal delay-1">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">Excellent service — end result lovely and the team were great to have around.</div>
+      <div class="testimonial-author">Bev Ingoldsby · Meaford</div>
+    </div>
+    <div class="testimonial-card reveal delay-2">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">Tidy, hard working, and job done perfectly. Exactly what we needed.</div>
+      <div class="testimonial-author">Dave Stamper · Thornbury</div>
+    </div>
+    <div class="testimonial-card reveal delay-3">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-quote">Ben is easy to work with and communicates well with both the homeowner and contractor.</div>
+      <div class="testimonial-author">Jason Nichol · Collingwood</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPLY YARD STRIP -->
+<div class="supply-strip">
+  <div>
+    <div class="supply-strip-text">PUREscapes Supply Yard</div>
+    <div class="supply-strip-sub">Aggregates · Topsoil · Mulch · Stone · Landscape Materials · Open to Trade & Public</div>
+  </div>
+  <a href="https://www.werepure.ca/shop" class="supply-strip-btn" target="_blank">Visit the Yard →</a>
+</div>
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-grid">
     <div>
-      <div class="section-label">Get In Touch</div>
-      <h2 class="section-headline">Let's talk<br><em>about your land.</em></h2>
-      <p class="contact-body">
-        Whether it's a residential project, a commercial site, or a municipal tender — we want to hear about it.
+      <div class="section-tag reveal">Get In Touch</div>
+      <h2 class="section-h2 reveal delay-1">Ready to start<br><em>your project?</em></h2>
+      <p class="contact-body reveal delay-2">
+        Whether it's a backyard transformation, a new pool, a retaining wall, or a full site excavation — we want to hear about it. We serve Grey County, Simcoe County, and everywhere in between.
       </p>
-      <div class="contact-details">
-        <div class="contact-detail">
-          <div class="contact-detail-icon">📞</div>
+      <div class="contact-details reveal delay-3">
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
           <a href="tel:2262450573">226.245.0573</a>
         </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">✉</div>
+        <div class="contact-row">
+          <div class="contact-icon">✉</div>
           <a href="mailto:info@werepure.ca">info@werepure.ca</a>
         </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">📍</div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
           <span>Unit B, 71 Edwin St E, Meaford ON N4L 1C4</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">⏰</div>
+          <span>Mon–Fri 7am–6pm · Sat 8am–4pm</span>
         </div>
       </div>
     </div>
-    <div>
-      <div class="form-group">
+    <div class="reveal delay-2">
+      <div style="margin-bottom:16px;">
         <label class="form-label">Your Name</label>
-        <input type="text" class="form-input" placeholder="First & Last">
+        <input type="text" class="form-input" placeholder="First & Last Name">
       </div>
-      <div class="form-group">
+      <div style="margin-bottom:16px;">
         <label class="form-label">Email</label>
         <input type="email" class="form-input" placeholder="you@email.com">
       </div>
-      <div class="form-group">
-        <label class="form-label">Project Type</label>
-        <input type="text" class="form-input" placeholder="Excavation, Landscaping, Hardscaping...">
+      <div style="margin-bottom:16px;">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-input" placeholder="(226) 000-0000">
       </div>
-      <div class="form-group">
+      <div style="margin-bottom:16px;">
+        <label class="form-label">Service Needed</label>
+        <select class="form-input" style="cursor:pointer;appearance:none;">
+          <option value="">Select a service…</option>
+          <option>Landscaping</option>
+          <option>Hardscaping / Interlock</option>
+          <option>Excavation / Site Prep</option>
+          <option>Pool & Outdoor Living</option>
+          <option>Armour Stone</option>
+          <option>Seasonal Maintenance</option>
+          <option>Supply Yard</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div style="margin-bottom:20px;">
         <label class="form-label">Tell Us About Your Project</label>
-        <textarea class="form-input" placeholder="Location, scope, timeline..."></textarea>
+        <textarea class="form-input" placeholder="Location, scope, timeline, budget range…"></textarea>
       </div>
-      <button class="btn-primary" style="width:100%">Send Message</button>
+      <button class="btn-submit">Send Message</button>
     </div>
   </div>
 </section>
 
-<!-- ======== FOOTER ======== -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">PURE<span>scapes</span></div>
-  <div class="footer-copy">
-    © 2025 PUREscapes Ltd. · Meaford, ON · 
-    <span style="cursor:pointer; color: var(--stone); font-size:10px;" onclick="window.location='/admin'">⚙</span>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">PURE<span>scapes</span></div>
+      <div class="footer-tagline">Hardscape · Excavate · Landscape · Meaford, Ontario</div>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#work">Gallery</a>
+      <a href="#about">About</a>
+      <a href="https://www.werepure.ca/shop" target="_blank">Supply Yard</a>
+      <a href="https://www.werepure.ca/careers" target="_blank">Careers</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/purescapes_ltd/" target="_blank">IG</a>
+      <a href="https://www.facebook.com/werepure" target="_blank">FB</a>
+    </div>
   </div>
-  <div class="footer-social">
-    <a href="https://www.instagram.com/purescapes_ltd/" target="_blank">ig</a>
-    <a href="https://www.facebook.com/werepure" target="_blank">fb</a>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 PUREscapes Ltd. All rights reserved.</div>
+    <a href="/admin" class="footer-admin">Staff Portal</a>
   </div>
 </footer>
 
-
-
 <script>
-// ======== HERO CANVAS — LIVING GRASS + WIND ========
-(function() {
-  const canvas = document.getElementById('heroCanvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, blades = [], time = 0;
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    blades = [];
-    const count = Math.floor(W / 3.2);
-    for (let i = 0; i < count; i++) {
-      blades.push({
-        x: (i / count) * W + (Math.random() - 0.5) * 12,
-        baseY: H,
-        h: 60 + Math.random() * 160,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.4 + Math.random() * 0.6,
-        amplitude: 8 + Math.random() * 18,
-        thickness: 0.6 + Math.random() * 1.4,
-        hue: 95 + Math.floor(Math.random() * 30),
-        sat: 25 + Math.floor(Math.random() * 35),
-        lit: 12 + Math.floor(Math.random() * 22),
-      });
-    }
-  }
-
-  function drawBlade(b) {
-    const wind = Math.sin(time * b.speed + b.phase) * b.amplitude
-                + Math.sin(time * 0.3 + b.phase * 0.7) * b.amplitude * 0.4;
-    const segments = 8;
-    ctx.beginPath();
-    ctx.moveTo(b.x, b.baseY);
-    let px = b.x, py = b.baseY;
-    for (let s = 1; s <= segments; s++) {
-      const t = s / segments;
-      const curve = wind * t * t;
-      const nx = b.x + curve;
-      const ny = b.baseY - b.h * t;
-      const cpx = (px + nx) / 2 + (Math.random() - 0.5) * 1.5;
-      const cpy = (py + ny) / 2;
-      ctx.quadraticCurveTo(cpx, cpy, nx, ny);
-      px = nx; py = ny;
-    }
-    const alpha = 0.3 + 0.7 * (1 - Math.random() * 0.1);
-    ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${b.lit}%,${alpha})`;
-    ctx.lineWidth = b.thickness;
-    ctx.stroke();
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    // night sky gradient
-    const sky = ctx.createLinearGradient(0, 0, 0, H);
-    sky.addColorStop(0, '#0d1a08');
-    sky.addColorStop(0.5, '#121a0e');
-    sky.addColorStop(1, '#1a2410');
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, W, H);
-
-    // Stars
-    if (!blades._stars) {
-      blades._stars = Array.from({length:80}, () => ({
-        x: Math.random() * W, y: Math.random() * H * 0.55,
-        r: Math.random() * 1.2, phase: Math.random() * Math.PI * 2
-      }));
-    }
-    blades._stars.forEach(s => {
-      const a = 0.3 + 0.4 * Math.sin(time * 0.5 + s.phase);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200,216,188,${a})`;
-      ctx.fill();
-    });
-
-    // Moon glow
-    const mg = ctx.createRadialGradient(W * 0.78, H * 0.18, 0, W * 0.78, H * 0.18, 120);
-    mg.addColorStop(0, 'rgba(196,164,74,0.08)');
-    mg.addColorStop(1, 'rgba(196,164,74,0)');
-    ctx.fillStyle = mg;
-    ctx.fillRect(0, 0, W, H);
-
-    // Ground
-    const ground = ctx.createLinearGradient(0, H - 80, 0, H);
-    ground.addColorStop(0, '#141810');
-    ground.addColorStop(1, '#0e1109');
-    ctx.fillStyle = ground;
-    ctx.fillRect(0, H - 80, W, 80);
-
-    // Grass
-    blades.forEach(b => { if (!b._stars) drawBlade(b); });
-
-    time += 0.012;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  draw();
-})();
-
-// ======== ABOUT CANVAS — STONE TEXTURE + ROOTS ========
-(function() {
-  const canvas = document.getElementById('aboutCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, roots = [], time = 0;
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    roots = [];
-    for (let i = 0; i < 12; i++) {
-      roots.push({
-        x: W * 0.3 + Math.random() * W * 0.4,
-        y: H * 0.5 + Math.random() * H * 0.3,
-        angle: (Math.random() - 0.5) * Math.PI,
-        length: 40 + Math.random() * 120,
-        width: 0.8 + Math.random() * 2.5,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.3 + Math.random() * 0.5,
-        alpha: 0.1 + Math.random() * 0.3
-      });
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    // Background — dark earth
-    ctx.fillStyle = '#141810';
-    ctx.fillRect(0, 0, W, H);
-
-    // Stone texture layers
-    for (let i = 0; i < 3; i++) {
-      const x = 40 + i * W * 0.28;
-      const y = 60 + i * H * 0.22;
-      const rg = ctx.createRadialGradient(x, y, 0, x, y, 100 + i * 40);
-      rg.addColorStop(0, `rgba(60,70,50,0.15)`);
-      rg.addColorStop(1, `rgba(60,70,50,0)`);
-      ctx.fillStyle = rg;
-      ctx.fillRect(0, 0, W, H);
-    }
-
-    // Roots / veins
-    roots.forEach(r => {
-      const sway = Math.sin(time * r.speed + r.phase) * 12;
-      ctx.beginPath();
-      ctx.moveTo(r.x, r.y);
-      const ex = r.x + Math.cos(r.angle) * r.length + sway;
-      const ey = r.y + Math.sin(r.angle) * r.length;
-      ctx.quadraticCurveTo(
-        r.x + Math.cos(r.angle) * r.length * 0.5 + sway * 0.5,
-        r.y + Math.sin(r.angle) * r.length * 0.5,
-        ex, ey
-      );
-      ctx.strokeStyle = `rgba(122,158,107,${r.alpha})`;
-      ctx.lineWidth = r.width;
-      ctx.stroke();
-    });
-
-    // Central glow
-    const glow = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W * 0.45);
-    glow.addColorStop(0, 'rgba(61,82,41,0.12)');
-    glow.addColorStop(1, 'rgba(61,82,41,0)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, W, H);
-
-    // PURE text
-    ctx.font = `300 ${W * 0.28}px 'Cormorant Garamond', serif`;
-    ctx.fillStyle = 'rgba(200,216,188,0.04)';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('PURE', W/2, H/2);
-
-    time += 0.01;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  draw();
-})();
-
-// ======== NAV SCROLL ========
+// ── Nav scroll behaviour ──────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+  nav.classList.toggle('solid', window.scrollY > 60);
+}, { passive: true });
+
+// ── Hero entrance animations ──────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Hero bg Ken Burns
+  const bg = document.getElementById('heroBg');
+  bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85&auto=format&fit=crop')";
+  setTimeout(() => bg.classList.add('loaded'), 100);
+
+  // Staggered hero text
+  setTimeout(() => document.getElementById('heroTag').classList.add('in'), 300);
+  setTimeout(() => document.getElementById('heroH1').classList.add('in'), 500);
+  setTimeout(() => document.getElementById('heroSub').classList.add('in'), 700);
+  setTimeout(() => document.getElementById('heroBtns').classList.add('in'), 900);
 });
 
-// ======== MOBILE MENU ========
-function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
-function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
-
-// ======== ADMIN ========
-function openAdmin() {
-  document.getElementById('admin-overlay').style.display = 'block';
-  document.getElementById('admin-login').style.display = 'flex';
-  document.getElementById('admin-dashboard').style.display = 'none';
-}
-
-function doLogin() {
-  const u = document.getElementById('loginUser').value;
-  const p = document.getElementById('loginPass').value;
-  if (u === 'pure' && p === 'scapes') {
-    document.getElementById('admin-login').style.display = 'none';
-    document.getElementById('admin-dashboard').style.display = 'block';
-    populateTenders();
-    populateWinners();
-  } else {
-    document.getElementById('loginError').style.display = 'block';
-  }
-}
-
-function doLogout() {
-  document.getElementById('admin-overlay').style.display = 'none';
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
-}
-
-// ======== PANELS ========
-function showPanel(id) {
-  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-  document.getElementById('panel-' + id).classList.add('active');
-  const items = document.querySelectorAll('.sidebar-item');
-  const map = {overview:0, tenders:1, 'ai-assistant':2, proposals:3, winners:4, settings:5};
-  if (map[id] !== undefined) items[map[id]].classList.add('active');
-}
-
-// ======== TENDERS DATA ========
-const TENDERS = [
-  {
-    title: 'Roadside Grass Cutting & Vegetation Management',
-    muni: 'Town of Collingwood',
-    category: 'landscaping',
-    value: '$42,000–$58,000',
-    closes: 'Jul 8, 2025',
-    urgent: true,
-    fit: 92,
-    source: 'Biddingo',
-    desc: 'Annual contract for roadside grass cutting along 68km of municipal road allowances. Includes ditch trimming and vegetation control at 12 intersections.',
-  },
-  {
-    title: 'Ditch Maintenance & Culvert Replacement Program',
-    muni: 'The Corporation of Grey County',
-    category: 'excavation',
-    value: '$80,000–$95,000',
-    closes: 'Jul 15, 2025',
-    urgent: false,
-    fit: 87,
-    source: 'grey.ca',
-    desc: 'Annual maintenance of rural ditching along County Road 7 and 19. Includes culvert replacement, grading, and erosion repair at approximately 22 locations.',
-  },
-  {
-    title: 'Harrison Park Restoration — Phase 2',
-    muni: 'City of Owen Sound',
-    category: 'landscaping',
-    value: '$110,000–$140,000',
-    closes: 'Jul 22, 2025',
-    urgent: false,
-    fit: 74,
-    source: 'Biddingo',
-    desc: 'Landscape restoration of park grounds including topsoil grading, seeding, native plantings, 3 retaining wall sections, and pathway installation.',
-  },
-  {
-    title: 'Cemetery Grounds Maintenance Services',
-    muni: 'Municipality of Meaford',
-    category: 'maintenance',
-    value: '$28,000–$36,000',
-    closes: 'Jul 30, 2025',
-    urgent: false,
-    fit: 89,
-    source: 'grey.ca',
-    desc: 'Seasonal maintenance of St. Vincent and Meaford municipal cemeteries. Mowing, edging, trimming, and grounds upkeep from May through October.',
-  },
-  {
-    title: 'Site Grading & Drainage — New Rec Facility',
-    muni: 'Town of the Blue Mountains',
-    category: 'excavation',
-    value: '$175,000–$220,000',
-    closes: 'Aug 5, 2025',
-    urgent: false,
-    fit: 68,
-    source: 'Bids & Tenders',
-    desc: 'Full site preparation including rough grading, drainage infrastructure, storm sewer tie-in, and finish grading for new recreational facility. Bonding required.',
-  },
-  {
-    title: 'Urban Tree Planting Program 2025',
-    muni: 'Town of Wasaga Beach',
-    category: 'landscaping',
-    value: '$22,000–$30,000',
-    closes: 'Aug 12, 2025',
-    urgent: false,
-    fit: 55,
-    source: 'MERX',
-    desc: 'Supply and installation of 85 street trees across 14 municipal locations. Includes dig, plant, stake, root barrier, and 12-month warranty.',
-  },
-  {
-    title: 'Shoreline Erosion Stabilization — Harbour Rd',
-    muni: 'Municipality of Meaford',
-    category: 'construction',
-    value: '$65,000–$80,000',
-    closes: 'Aug 20, 2025',
-    urgent: false,
-    fit: 78,
-    source: 'grey.ca',
-    desc: 'Shoreline stabilization including armour stone placement, geotextile fabric installation, and grading. Approximately 240 linear metres of shoreline.',
-  },
-];
-
-function fitClass(s) { return s >= 80 ? 'high-fit' : s >= 60 ? 'medium-fit' : 'low-fit'; }
-function scoreClass(s) { return s >= 80 ? 'score-high' : s >= 60 ? 'score-med' : 'score-low'; }
-
-function populateTenders(filter = 'all') {
-  const list = document.getElementById('tenders-list');
-  if (!list) return;
-  list.innerHTML = '';
-  const filtered = TENDERS.filter(t => 
-    filter === 'all' ? true :
-    filter === 'high' ? t.fit >= 80 :
-    t.category === filter
-  );
-  filtered.sort((a,b) => b.fit - a.fit);
-  filtered.forEach(t => {
-    const card = document.createElement('div');
-    card.className = `tender-card ${fitClass(t.fit)}`;
-    card.innerHTML = `
-      <div>
-        <div class="tender-title">${t.title}</div>
-        <div class="tender-meta">
-          <div class="tender-meta-item"><strong>${t.muni}</strong></div>
-          <div class="tender-meta-item">Est. <strong>${t.value}</strong></div>
-          <div class="tender-meta-item">Source: ${t.source}</div>
-          <div class="tender-meta-item" style="text-transform:capitalize;">${t.category}</div>
-        </div>
-        <div class="tender-desc">${t.desc}</div>
-      </div>
-      <div class="tender-right">
-        <div class="fit-score">
-          <div class="fit-score-value ${scoreClass(t.fit)}">${t.fit}</div>
-          <div class="fit-score-label">AI Fit</div>
-        </div>
-        <div class="tender-actions">
-          <button class="btn-sm btn-sm-primary" onclick="loadProposal('${t.title}','${t.muni}','${t.value}','${t.closes}','${t.desc}')">Build Proposal</button>
-          <button class="btn-sm btn-sm-ghost" onclick="askAbout('${t.title}')">Ask AI</button>
-        </div>
-        <div class="tender-deadline ${t.urgent ? 'urgent' : ''}">
-          ${t.urgent ? '⚠ ' : ''}Closes ${t.closes}
-        </div>
-      </div>
-    `;
-    list.appendChild(card);
-  });
-}
-
-function filterTenders(el, filter) {
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  populateTenders(filter);
-}
-
-// ======== WINNERS DATA ========
-const WINNERS = [
-  { project: 'Annual Ditch Maintenance Program', muni: 'Grey County', winner: 'Bray Contracting Inc.', value: '$88,400', cat: 'Excavation', year: '2024' },
-  { project: 'Cemetery Grounds Maintenance', muni: 'Municipality of Meaford', winner: 'Valley Green Services', value: '$31,200', cat: 'Maintenance', year: '2024' },
-  { project: 'Roadside Mowing — Zone B', muni: 'Town of Collingwood', winner: 'BrightLawn Commercial', value: '$44,750', cat: 'Landscaping', year: '2024' },
-  { project: 'Harbour Park Restoration', muni: 'City of Owen Sound', winner: 'Granite Ridge Landscaping', value: '$122,800', cat: 'Landscaping', year: '2024' },
-  { project: 'Site Prep — Thornbury Community Centre', muni: 'Town of the Blue Mountains', winner: 'Miller Paving Ltd.', value: '$198,000', cat: 'Excavation', year: '2023' },
-  { project: 'Urban Tree Planting', muni: 'Town of Wasaga Beach', winner: 'EcoRoots Inc.', value: '$26,400', cat: 'Landscaping', year: '2024' },
-  { project: 'Stormwater Ditch Repair', muni: 'Township of Clearview', winner: 'Bray Contracting Inc.', value: '$71,500', cat: 'Construction', year: '2023' },
-];
-
-function populateWinners() {
-  const tbody = document.getElementById('winners-tbody');
-  if (!tbody) return;
-  tbody.innerHTML = '';
-  WINNERS.forEach(w => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${w.project}</td>
-      <td>${w.muni}</td>
-      <td>${w.winner}</td>
-      <td style="color:var(--mist)">${w.value}</td>
-      <td>${w.cat}</td>
-      <td>${w.year}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-// ======== PROPOSAL BUILDER ========
-function loadProposal(title, muni, value, deadline, desc) {
-  showPanel('proposals');
-  document.getElementById('proposalTender').value = title;
-  document.getElementById('proposalMuni').value = muni;
-  document.getElementById('proposalValue').value = value;
-  document.getElementById('proposalDeadline').value = deadline;
-  document.getElementById('proposalScope').value = desc;
-}
-
-async function generateProposal() {
-  const tender = document.getElementById('proposalTender').value;
-  const muni = document.getElementById('proposalMuni').value;
-  const value = document.getElementById('proposalValue').value;
-  const deadline = document.getElementById('proposalDeadline').value;
-  const scope = document.getElementById('proposalScope').value;
-  const strengths = document.getElementById('proposalStrengths').value;
-  const output = document.getElementById('proposalOutput');
-
-  if (!tender) { alert('Please enter a tender name.'); return; }
-
-  output.classList.add('visible');
-  output.innerHTML = '<div class="loading-shimmer" style="height:200px; border:none;"></div>';
-
-  const prompt = `You are a professional bid writer for PUREscapes Ltd., a landscaping, excavation, and hardscaping contractor based in Meaford, Ontario. Write a complete, professional bid proposal for the following opportunity.
-
-Tender: ${tender}
-Issuing Organization: ${muni}
-Estimated Value: ${value}
-Deadline: ${deadline}
-Scope of Work: ${scope}
-Our Key Strengths: ${strengths || 'Over 10 years serving Grey and Simcoe Counties. Fully bonded and insured. Local crew, local knowledge. Expertise in excavation, grading, landscaping, and hardscaping for both residential and municipal clients.'}
-
-Write a formal bid proposal including:
-1. Cover letter (professional, specific to this tender)
-2. Company qualifications summary
-3. Understanding of scope
-4. Methodology / approach
-5. Proposed timeline
-6. Pricing overview structure (not exact numbers, but line item categories)
-7. Closing statement
-
-Keep it professional, confident, and specific to this opportunity. Format with clear section headings.`;
-
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await resp.json();
-    const text = data.content?.find(c => c.type === 'text')?.text || 'Unable to generate proposal.';
-    
-    // Format output
-    let html = '';
-    const lines = text.split('\n');
-    lines.forEach(line => {
-      if (line.match(/^#{1,3} /)) {
-        html += `<h3>${line.replace(/^#+\s/, '')}</h3>`;
-      } else if (line.trim()) {
-        html += `<p>${line}</p>`;
-      }
-    });
-    output.innerHTML = html || `<p>${text}</p>`;
-  } catch(e) {
-    output.innerHTML = `<h3>Sample Proposal Structure</h3>
-<p><strong>RE: ${tender} — Bid Submission</strong></p>
-<p>Dear ${muni} Procurement Team,</p>
-<p>PUREscapes Ltd. is pleased to submit this proposal in response to your request for ${tender}. With over a decade of experience serving municipalities across Grey and Simcoe Counties, our team brings the local expertise, equipment capacity, and proven track record this project demands.</p>
-<h3>Company Qualifications</h3>
-<p>PUREscapes Ltd. is a fully licensed, bonded, and insured landscaping and excavation contractor based in Meaford, Ontario. We have successfully completed municipal maintenance, grading, and landscape restoration contracts for the Municipality of Meaford, Town of Collingwood, and Township of Clearview.</p>
-<h3>Scope Understanding</h3>
-<p>${scope}</p>
-<h3>Our Approach</h3>
-<p>Our team will mobilize within 5 business days of contract award. Work will be phased to minimize disruption and completed on schedule with daily site logs provided to the municipality.</p>
-<h3>Pricing Overview</h3>
-<p>Labour: Billed at $85/hr per crew member | Equipment: Excavator $165/hr, Tractor $95/hr | Materials: Cost + 15% | Mobilization: $350 flat | Total estimate within range of ${value}</p>
-<p>We welcome the opportunity to discuss this proposal and are available for site walk through at your convenience.</p>
-<p>Sincerely,<br>PUREscapes Ltd. | 226.245.0573 | info@werepure.ca</p>`;
-  }
-}
-
-// ======== AI CHAT ========
-const chatHistory = [];
-
-async function sendChat() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  addChatMsg(msg, true);
-
-  const typing = addTyping();
-
-  const systemContext = `You are the AI procurement assistant for PUREscapes Ltd., a landscaping, hardscaping, and excavation company based in Meaford, Ontario. You help the team find and win municipal tenders within 100km of Meaford (Grey County, Simcoe County, Owen Sound, Collingwood, Barrie area, Wasaga Beach, Blue Mountains, Clearview, Midland, Penetanguishene, Georgian Bluffs).
-
-Key sources: Grey County tender portal, Biddingo, Bids & Tenders Ontario, MERX, CanadaBuys.
-Categories: excavation, grading, site prep, ditch maintenance, landscaping, grass cutting, hardscaping, municipal maintenance, snow removal.
-Crew capacity: 2 active crews.
-
-Help analyze tenders, suggest bid strategy, benchmark rates, research past winners, and draft proposal elements. Be specific and practical.`;
-
-  chatHistory.push({ role: 'user', content: msg });
-
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: systemContext,
-        messages: chatHistory
-      })
-    });
-    const data = await resp.json();
-    const reply = data.content?.find(c => c.type === 'text')?.text || 'Unable to respond right now.';
-    typing.remove();
-    addChatMsg(reply, false);
-    chatHistory.push({ role: 'assistant', content: reply });
-  } catch(e) {
-    typing.remove();
-    addChatMsg(`Based on current tenders in your area, the Grey County Ditch Maintenance Program (closes Jul 15) is your highest-priority opportunity at $80–95K estimated value. Your fit score is 87/100. I'd recommend bidding at $87,500 based on comparable 2024 awards in the region. Shall I generate a full proposal?`, false);
-  }
-}
-
-function addChatMsg(text, isUser) {
-  const area = document.getElementById('chatArea');
-  const div = document.createElement('div');
-  div.className = 'chat-msg' + (isUser ? ' user' : '');
-  div.style.flexDirection = isUser ? 'row-reverse' : 'row';
-  div.innerHTML = `
-    <div class="chat-avatar">${isUser ? 'You' : 'AI'}</div>
-    <div class="chat-bubble ${isUser ? 'user' : ''}">${text.replace(/\n/g,'<br>')}</div>
-  `;
-  area.appendChild(div);
-  area.scrollTop = area.scrollHeight;
-  return div;
-}
-
-function addTyping() {
-  const area = document.getElementById('chatArea');
-  const div = document.createElement('div');
-  div.className = 'chat-msg';
-  div.innerHTML = `<div class="chat-avatar">AI</div><div class="chat-bubble chat-typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
-  area.appendChild(div);
-  area.scrollTop = area.scrollHeight;
-  return div;
-}
-
-function quickPrompt(text) {
-  document.getElementById('chatInput').value = text;
-  sendChat();
-}
-
-function askAbout(title) {
-  showPanel('ai-assistant');
-  document.getElementById('chatInput').value = `Analyze the "${title}" tender and tell me if we should bid, what to watch for, and what a competitive price would look like.`;
-  sendChat();
-}
-
-// ======== SMOOTH SCROLL ========
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
     }
   });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── Parallax on image breaks ──────────────────────────────────────────────────
+const parallaxEls = document.querySelectorAll('.image-break img');
+window.addEventListener('scroll', () => {
+  parallaxEls.forEach(img => {
+    const rect = img.closest('.image-break').getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      const pct = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      img.style.transform = `translateY(${(pct - 0.5) * 60}px) scale(1.08)`;
+    }
+  });
+}, { passive: true });
+
+// ── Mobile menu ───────────────────────────────────────────────────────────────
+function openMenu() { document.getElementById('mobMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMenu() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ── Form submit ───────────────────────────────────────────────────────────────
+document.querySelector('.btn-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  this.textContent = 'Message Sent ✓';
+  this.style.background = 'var(--sage)';
+  this.style.color = 'var(--white)';
+  setTimeout(() => {
+    this.textContent = 'Send Message';
+    this.style.background = '';
+    this.style.color = '';
+  }, 4000);
 });
 </script>
 </body>
