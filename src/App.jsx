@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-
 // ── Config ──────────────────────────────────────────────────────────────────
 const SUPA = "https://vrdcpahwapmuyulsfvst.supabase.co";
 const KEY  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZGNwYWh3YXBtdXl1bHNmdnN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDg5OTUsImV4cCI6MjA5NzkyNDk5NX0.1yBzScypgCevsckso4u7nU9UBWjYHXYm3MLsdKhRY4A";
